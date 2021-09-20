@@ -1,0 +1,24 @@
+{
+  "name": "axp-dev/ya-metrika",
+  "description": "Yandex Metrika API Library",
+  "homepage": "https://github.com/mavrin88/YandexMetrika",
+  "version": "1.0",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Alexey Marchenko",
+      "email": "mavrin_88@mail.ru",
+      "homepage": "https://github.com/mavrin88"
+    }
+  ],
+  "require": {
+    "php": ">=5.6.4",
+    "guzzlehttp/guzzle": "^6.3|^7.0",
+    "nesbot/carbon": "^1.22|^2.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "API\\YaMetrika\\": "src"
+    }
+  }
+}
