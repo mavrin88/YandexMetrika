@@ -36,19 +36,52 @@ class YaMetrika
      */
     private $counterId;
 
-    /**
-     * Data from Yandex Metrica
-     *
-     * @var array
-     */
-    public $data;
-
 
     public function __construct($token, $counterId)
     {
         $this->client = new HttpClient($token);
         $this->counterId = $counterId;
 
+    }
+
+    /**
+     * We get visitors from search engines in N days.
+     *
+     * @param int $days
+     * @param int $limit
+     *
+     * @return $this
+     */
+    public function getUsersSearchEngine($days = 30, $limit = 10)
+    {
+        list($startDate, $endDate) = $this->differenceDate($days);
+
+        return $this->getUsersSearchEngineForPeriod($startDate, $endDate, $limit);
+    }
+
+    /**
+     * We get users from search engines for the selected period.
+     *
+     * @param DateTime $startDate
+     * @param DateTime $endDate
+     * @param int      $limit
+     *
+     * @return $this
+     */
+    public function getUsersSearchEngineForPeriod(DateTime $startDate, DateTime $endDate, $limit = 10)
+    {
+        $params = [
+            'date1'      => $startDate->format('Y-m-d'),
+            'date2'      => $endDate->format('Y-m-d'),
+            'metrics'    => 'ym:s:users',
+            'dimensions' => 'ym:s:searchEngine',
+            'filters'    => "ym:s:trafficSource=='organic'",
+            'limit'      => $limit,
+        ];
+
+        $url = $this->creataLink($params);
+
+        return $this->client->query($url);
     }
 
     /**
