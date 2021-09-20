@@ -40,3 +40,9 @@ public function getUsersSearchEngineForPeriod(DateTime $startDate, DateTime $end
 $startDate | DateTime | Начальная дата
 $endDate | DateTime | Конечная дата
 $limit | integer | Лимит записей. По умолчанию 10
+
+## Автор
+[Alexey Marchenko](https://github.com/mavrin88), e-mail: [mavrin_88@mail.ru](mailto:mavrin_88@mail.ru)
+
+## Лицензия
+Основой Yandex Metrika API являет открытый исходный код, в соответствии [MIT license](https://opensource.org/licenses/MIT)
