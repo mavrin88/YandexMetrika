@@ -2,7 +2,7 @@
 
 namespace API\YaMetrika\Service\V1;
 
-use API\YaMetrika\Service\AbstractService;
+use API\YaMetrika\Service\HttpClient;
 use Carbon\Carbon;
 use DateTime;
 
@@ -13,7 +13,7 @@ use DateTime;
  * @link    https://github.com/mavrin88/YandexMetrika
  * @package API\YaMetrika
  */
-class YaMetrika extends AbstractService
+class YaMetrika
 {
     /**
      * URL API Yandex Metrika
@@ -27,7 +27,7 @@ class YaMetrika extends AbstractService
      *
      * @var string
      */
-    private $token;
+    private $client;
 
     /**
      * Id counter
@@ -46,8 +46,9 @@ class YaMetrika extends AbstractService
 
     public function __construct($token, $counterId)
     {
-        $this->token = $token;
+        $this->client = new HttpClient($token);
         $this->counterId = $counterId;
+
     }
 
     /**
@@ -70,50 +71,4 @@ class YaMetrika extends AbstractService
         return $this->endPoint . '?' . http_build_query(array_merge($params, ['ids' => $this->counterId]), null, '&');
     }
 
-
-
-
-
-    /**
-     * Получаем возраст и пол посетителей за N дней
-     *
-     * @param int $days
-     * @param int $limit
-     *
-     * @return $this
-     */
-    public function getConversions($days = 7, $limit = 20)
-    {
-        list($startDate, $endDate) = $this->differenceDate($days);
-
-        $this->getConversionsForPeriod($startDate, $endDate, $limit);
-
-        return $this;
-    }
-
-    /**
-     * Получаем возраст и пол посетителей за выбранный период
-     *
-     * @param DateTime $startDate
-     * @param DateTime $endDate
-     * @param int      $limit
-     *
-     * @return $this
-     */
-    public function getConversionsForPeriod(DateTime $startDate, DateTime $endDate, $limit = 20)
-    {
-        $params = [
-            'date1'      => $startDate->format('Y-m-d'),
-            'date2'      => $endDate->format('Y-m-d'),
-            'filters'    => "ym:s:AdvEngine=='price_ru'",
-            'preset'     => 'conversion',
-            'limit'      => $limit,
-        ];
-
-        $url = $this->creataLink($params);
-
-        $this->data = $this->query($url);
-
-        return $this;
-    }
 }
