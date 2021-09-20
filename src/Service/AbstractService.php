@@ -1,5 +1,7 @@
 <?php
 
+namespace API\YaMetrika\Service;
+
 use API\YaMetrika\Exceptions\YaMetrikaException;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Exception\ClientException;
@@ -14,7 +16,7 @@ class AbstractService
      * @return array
      * @throws YaMetrikaException
      */
-    private function query($url)
+    protected function query($url)
     {
         try {
             $client = new GuzzleClient($this->getHttpClientParams());
