@@ -1,7 +1,9 @@
+<h1 align="center" style="font-size: xxx-large"><b style="color: red">Я</b>ндекс метрика</h1>
+
 <h3 align="center">Библиотека для удобного взаимодействия с Yandex Metrika API</h3>
 
 <p align="center">
-    <a href="https://php.net"><img alt="PHP 7.4" src="https://img.shields.io/badge/PHP-7.3-777BB4?style=for-the-badge&logo=php"></a>
+    <a href="https://php.net"><img alt="PHP 7.4" src="https://img.shields.io/badge/PHP-5.6-777BB4?style=for-the-badge&logo=php"></a>
 </p>
 
 ### Получение токена
@@ -27,7 +29,7 @@ $search = $YaMetrika->getUsersSearchEngine();
 ### Пользователи из поисковых систем
 #### За последние N дней
 ```php
-public function getUsersSearchEngine($days = 30, $limit = 10) : self
+public function getUsersSearchEngine($days = 30, $limit = 10) : array
 ```
 Название | Тип | Описание
 ---------|-----|----------------------
@@ -36,7 +38,7 @@ $limit | integer | Лимит записей. По умолчанию 10
 
 #### За указанный период
 ```php
-public function getUsersSearchEngineForPeriod(DateTime $startDate, DateTime $endDate, $limit = 10) : self
+public function getUsersSearchEngineForPeriod(DateTime $startDate, DateTime $endDate, $limit = 10) : array 
 ```
 Название | Тип | Описание
 ---------|-----|----------------------
