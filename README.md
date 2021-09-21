@@ -1,5 +1,8 @@
-# Yandex Metrika API
-Библиотека для удобного взаимодействия с Yandex Metrika API
+<h3 align="center">Библиотека для удобного взаимодействия с Yandex Metrika API</h3>
+
+<p align="center">
+    <a href="https://php.net"><img alt="PHP 7.4" src="https://img.shields.io/badge/PHP-7.3-777BB4?style=for-the-badge&logo=php"></a>
+</p>
 
 ### Получение токена
 1. Переходим на страницу [oauth.yandex.ru](https://oauth.yandex.ru/)
